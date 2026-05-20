@@ -2,7 +2,42 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import UserQuery
+from .models import BotUser, Lesson, LessonView, UserQuery
+
+
+@admin.register(BotUser)
+class BotUserAdmin(admin.ModelAdmin):
+    list_display = ('get_name', 'telegram_id', 'username', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('username', 'first_name', 'telegram_id')
+    readonly_fields = ('telegram_id', 'created_at', 'updated_at')
+
+    @admin.display(description='Имя')
+    def get_name(self, obj):
+        return obj.first_name or obj.username or '—'
+
+
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ('number', 'title', 'status', 'created_at')
+    list_filter = ('is_active', 'created_at')
+    search_fields = ('number', 'title')
+    readonly_fields = ('created_at', 'updated_at')
+    fields = ('number', 'title', 'content', 'is_active', 'created_at', 'updated_at')
+
+    @admin.display(description='Статус')
+    def status(self, obj):
+        if obj.is_active:
+            return format_html('<span style="color: green;">✅ Активен</span>')
+        return format_html('<span style="color: red;">❌ Неактивен</span>')
+
+
+@admin.register(LessonView)
+class LessonViewAdmin(admin.ModelAdmin):
+    list_display = ('user', 'lesson', 'created_at')
+    list_filter = ('created_at', 'lesson')
+    search_fields = ('user__username', 'lesson__title')
+    readonly_fields = ('created_at',)
 
 
 @admin.register(UserQuery)
