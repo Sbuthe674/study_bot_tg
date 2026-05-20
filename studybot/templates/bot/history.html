@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>История запросов — StudyBot</title>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { font-size: 1.4rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+    th { background: #f4f4f4; }
+    tr:nth-child(even) { background: #fafafa; }
+    .cmd { font-family: monospace; background: #eee; padding: 2px 5px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>📋 История запросов StudyBot</h1>
+  <p>Последние {{ queries|length }} запросов. <a href="/admin/">Открыть Django-админку</a></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Время</th>
+        <th>User</th>
+        <th>Команда</th>
+        <th>Запрос</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for q in queries %}
+      <tr>
+        <td>{{ q.created_at|date:"d.m.Y H:i" }}</td>
+        <td>{{ q.username|default:q.telegram_id }}</td>
+        <td><span class="cmd">{{ q.command }}</span></td>
+        <td>{{ q.query_text }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4">Запросов ещё нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
