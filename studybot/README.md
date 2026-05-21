@@ -1,9 +1,5 @@
 # StudyBot - Educational Telegram Bot
 
-A Python + Django educational project that demonstrates integration of multiple course topics into a single Telegram bot application.
-
-**Total**: **100/100 points** - All requirements met.
-
 ## 📋 Project Description
 
 StudyBot is a feature-rich Telegram bot built for learning purposes. It integrates various programming concepts and libraries:
