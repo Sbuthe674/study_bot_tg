@@ -2,20 +2,6 @@
 
 A Python + Django educational project that demonstrates integration of multiple course topics into a single Telegram bot application.
 
-## 🎓 Exam Project Status
-
-**This project fully complies with Python Programming course final project requirements.**
-
-See [EXAM_REQUIREMENTS.md](EXAM_REQUIREMENTS.md) for detailed compliance checklist covering:
-- ✅ Project idea & practical value (10 pts)
-- ✅ Working Python implementation (25 pts)
-- ✅ User interface design (15 pts)
-- ✅ Bot logic & algorithms (20 pts)
-- ✅ Error handling (10 pts)
-- ✅ Data storage & history (10 pts)
-- ✅ Documentation & structure (5 pts)
-- ✅ Defense readiness (5 pts)
-
 **Total**: **100/100 points** - All requirements met.
 
 ## 📋 Project Description
